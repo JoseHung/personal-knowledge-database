@@ -77,7 +77,9 @@ Bayesian classification works most effectively when each attribute has a small d
 
 
 
-Bayes’ Theorem:
+Bayes’ Theorem:   
+
+
 $$
 Pr[X|Y]=\frac{Pr[Y|X]\cdot Pr[X]}{Pr[Y]}
 $$
