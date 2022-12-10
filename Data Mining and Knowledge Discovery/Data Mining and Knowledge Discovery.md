@@ -176,3 +176,48 @@ The algorithm finishes where no violation points are found.
      - Repeat Line 3.
 
 **Theorem**: Our incremental algorithm returns a separation plane with margin at least γ~opt~/4. Furthermore, it performs O(R^2^/γ~opt~^2^) iterations in total (including all the repeats at Line 3).
+
+
+
+### The Kernel Method
+
+The kernel method maps a dataset into another space of higher dimensionality. By applying the method appropriately, we can always guarantee linear separability.
+
+A kernel function K is a function from R^d^ × R^d^ to R with the following property: there is a mapping *ϕ* : R^d^ → R^d‘^  such that, given any two points *p*, *q* ∈ R^d^ , *K(p, q)* equals the dot product of *ϕ(p)* and *ϕ(q)*.
+
+
+
+#### Polynomial Kernel
+
+Let *p* and *q* be two points in R^d^ . A polynomial kernel has the form: 
+$$
+K(p,q)=(p\cdot q +1)^c
+$$
+for some integer degree *c* ≥ 1.
+
+
+
+#### Gaussian Kernel (a.k.a. RBF Kernel)
+
+Let *p* and *q* be two points in R^d^ . A Gaussian kernel has the form: 
+$$
+K(p,q)=exp(-\frac{dist(p,q)^2}{2σ^2})
+$$
+for a real value σ > 0 called the bandwidth. Note that dist(p, q) is the Euclidean distance between p and q.
+
+In general, a Gaussian kernel converts d-dimensional space to another space with infinite dimensionality!
+
+
+
+#### Finding a Separation Plane in the Converted Space
+
+**Perceptron**
+
+The algorithm starts with ***w*** = (0, 0, ..., 0), and then runs in iterations.
+
+In each iteration, it simply checks whether any point in *ϕ*(*p*) ∈ *P′* violates our requirement according to ***w***. If so, the algorithm adjusts ***w*** as follows:
+
+- If *ϕ(p)* has label 1, then ***w*** ← ***w*** + *ϕ(p)*.
+- If *ϕ(p)* has label −1, then ***w*** ← ***w*** − *ϕ(p)*.
+
+The algorithm finishes if the iteration finds all points of *P′* on the right side of the plane.
