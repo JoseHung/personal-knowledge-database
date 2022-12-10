@@ -126,3 +126,53 @@ The algorithm finishes when there are no more violation points.
 
 
 
+### SVM
+
+In the large margin separation problem, we want to find a separation plane with the maximum margin.
+
+An algorithm solving this problem is called a **support vector machine**.
+
+
+
+### Margin Perceptron
+
+A point ***p*** causes a violation in any of the following situations:
+
+- Its distance to the plane ***w*** · ***x*** = 0 is less than γ~guess~/2, regardless of its label.
+- ***p*** has label 1 but ***w*** · ***p*** < 0.
+- ***p*** has label −1 but ***w*** · ***p*** > 0.
+
+The algorithm starts with ***w*** = 0 and runs in iterations.
+
+In each iteration, it tries to find a violation point ***p*** ∈ *S*. If found, the algorithm adjusts ***w*** as follows:
+
+- if ***p*** has label 1, ***w*** ← ***w*** + ***p***.
+- otherwise, ***w*** ← ***w*** − ***p***.
+
+The algorithm finishes where no violation points are found.
+
+**Theorem**: If γ~guess~ ≤ γ~opt~, margin Perceptron terminates in at most 12R^2^ /γ~opt~^2^ iterations and returns a separation plane with margin at least γ~guess~/2.
+
+
+
+**An Incremental Algorithm** 
+
+1. *R* ← the maximum distance from the origin to the points in *S*
+
+2. *γ~guess~* ← *R*
+
+3. Run margin Perceptron with parameter *γ~guess~* 
+
+   - [Self-Termination]
+
+     If the algorithm terminates with a plane ***π***, return ***π*** as the final answer. 
+
+   - [Forced-Termination]
+
+     If the algorithm has not terminated after 12R^2^/γ~guess~^2^ iterations: 
+
+     - Stop the algorithm manually.
+     - Set γ~guess~ ← γ~guess/2~.
+     - Repeat Line 3.
+
+**Theorem**: Our incremental algorithm returns a separation plane with margin at least γ~opt~/4. Furthermore, it performs O(R^2^/γ~opt~^2^) iterations in total (including all the repeats at Line 3).
