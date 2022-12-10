@@ -71,3 +71,34 @@ $$
 
 
 
+## The Bayesian Method
+
+Bayesian classification works most effectively when each attribute has a small domain, namely, the attribute has only a small number of possible values. When an attribute has a large domain, we may reduce its domain size through discretization.
+
+
+
+Bayes’ Theorem:
+$$
+Pr[X|Y]=\frac{Pr[Y|X]\cdot Pr[X]}{Pr[Y]}
+$$
+Given an instance x, (as in hopt) we predict its label as −1 if and only if
+$$
+Pr[y=-1|x]\geq Pr[y=1|x]
+$$
+Applying Bayes’ theorem, we get:
+$$
+Pr[y=1|x]=\frac{Pr[x|y=1]\cdot Pr[y=1]}{Pr[x]}
+$$
+Similarly
+$$
+Pr[y=-1|x]=\frac{Pr[x|y=-1]\cdot Pr[y=-1]}{Pr[x]}
+$$
+It suffices to decide which of the following is larger: 
+$$
+Pr[x|y=-1]\cdot Pr[y=-1],or,Pr[x|y=1]\cdot Pr[y=1]
+$$
+Bayesian classification makes an conditional independence assumption here:
+$$
+Pr[x|y=1]=\prod_{i=1}^dPr[x[A_i]|y=1]
+$$
+When this assumption is seriously violated, the accuracy of the method drops significantly.
