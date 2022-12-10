@@ -102,3 +102,27 @@ $$
 Pr[x|y=1]=\prod_{i=1}^dPr[x[A_i]|y=1]
 $$
 When this assumption is seriously violated, the accuracy of the method drops significantly.
+
+
+
+## Linear Classification
+
+### Perceptron
+
+The algorithm starts with ***w*** = (0, 0, ..., 0) and, then, runs in iterations. 
+In each iteration, it looks for a violation point ***p*** ∈ *S*:
+
+- If ***p*** has label 1, ***p*** is a violation point if ***w*** · ***p*** ≤ 0;
+- If ***p*** has label −1, ***p*** is a violation point if ***w*** · ***p*** ≥ 0;
+
+If ***p*** exists, the algorithm adjusts ***w*** as follows:
+
+- If ***p*** has label 1, then ***w*** ← ***w*** + ***p***.
+- If ***p*** has label −1, then ***w*** ← ***w*** − ***p***.
+
+The algorithm finishes when there are no more violation points.
+
+**Theorem**: Perceptron terminates after at most (*R*/γ)^2^ adjustments of ***w***.
+
+
+
