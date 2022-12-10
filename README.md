@@ -2,6 +2,7 @@
 
 This is my personal knowledge database, used to record learning process.  
 
-- [Data Mining and Knowledge Discovery](./Data Mining and Knowledge Discovery)
-- 
+[Data Mining](./Data Mining and Knowledge Discovery)
+
+
 
