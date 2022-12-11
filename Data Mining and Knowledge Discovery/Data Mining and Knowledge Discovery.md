@@ -250,7 +250,20 @@ Typically, the similarity between two objects o1, o2 is measured by a distance f
 
 ### k-center
 
+```
+algorithm k-center (P)
+/* this algorithm returns a 2-approximate subset C */
+C ← ∅
+add to C an arbitrary object in P
+for i = 2 to k
+	o ← an object in P with the maximum dC (o)
+	add o to C
+return C
+```
+
+
+
 ### k-means
 
-
+![image-20221211151457110](./photo/k-means.png)
 
