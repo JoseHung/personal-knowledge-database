@@ -22,16 +22,16 @@ The algorithm builds a decision tree *T* in a top-down and greedy manner. At eac
 ```
 algorithm Hunt(S)
 /* S is the training set; the function returns the root of a decision tree */
-1. if all the objects in S belong to the same class
-2. 		return a leaf node with the value of this class
-3. if (all the objects in S have the same attribute values) or (|S| is too small) /*to solve overfitting*/
-4. 		return a leaf node whose class value is the majority one in S
-5. find the “best” split attribute A∗ and predicate P∗
-6. S1 ← the set of objects in R satisfying P∗; S2 ← S \ S1
-7. u1 ← Hunt(R1); u2 ← Hunt(R2)
-8. create a root u with left child u1 and right child u2
-9. set Au ← A∗ and Pu ← P∗
-10. return u
+if all the objects in S belong to the same class
+ 		return a leaf node with the value of this class
+if (all the objects in S have the same attribute values) or (|S| is too small) /*to solve overfitting*/
+ 		return a leaf node whose class value is the majority one in S
+find the “best” split attribute A∗ and predicate P∗
+S1 ← the set of objects in R satisfying P∗; S2 ← S \ S1
+u1 ← Hunt(R1); u2 ← Hunt(R2)
+create a root u with left child u1 and right child u2
+set Au ← A∗ and Pu ← P∗
+return u
 ```
 
 
@@ -159,23 +159,18 @@ The algorithm finishes where no violation points are found.
 
 **An Incremental Algorithm** 
 
-1. *R* ← the maximum distance from the origin to the points in *S*
-
-2. *γ~guess~* ← *R*
-
-3. Run margin Perceptron with parameter *γ~guess~* 
-
-   - [Self-Termination]
-
-     If the algorithm terminates with a plane ***π***, return ***π*** as the final answer. 
-
-   - [Forced-Termination]
-
-     If the algorithm has not terminated after 12R^2^/γ~guess~^2^ iterations: 
-
-     - Stop the algorithm manually.
-     - Set γ~guess~ ← γ~guess/2~.
-     - Repeat Line 3.
+```
+*R* ← the maximum distance from the origin to the points in *S*
+*γ~guess~* ← *R*
+Run margin Perceptron with parameter *γ~guess~* 
+		[Self-Termination]
+    If the algorithm terminates with a plane ***π***, return ***π*** as the final answer. 
+    [Forced-Termination]
+    If the algorithm has not terminated after 12R^2^/γ~guess~^2^ iterations: 
+   		 Stop the algorithm manually.
+       Set γ~guess~ ← γ~guess/2~.
+       Repeat Line 3.
+```
 
 **Theorem**: Our incremental algorithm returns a separation plane with margin at least γ~opt~/4. Furthermore, it performs O(R^2^/γ~opt~^2^) iterations in total (including all the repeats at Line 3).
 
@@ -223,3 +218,41 @@ In each iteration, it simply checks whether any point in *ϕ*(*p*) ∈ *P′* vi
 - If *ϕ(p)* has label −1, then ***w*** ← ***w*** − *ϕ(p)*.
 
 The algorithm finishes if the iteration finds all points of *P′* on the right side of the plane.
+
+
+
+### Multiclass Perceptron
+
+```
+wi ← 0 for all i ∈ [1, k]
+while there is a violation point p ∈ S
+/* namely, p mis-classified by {w1, ..., wk } */
+		ℓ → the real label of p
+		z → the predicted label of p
+		/* ℓ ̸= z since p is a violation point */
+		wℓ ← wℓ + p
+		wz ← wz − p
+```
+
+
+
+**Theorem**: Multiclass Perceptron stops after processing at most R^2^/γ^2^ violation points.
+
+
+
+# Clustering
+
+Typically, the similarity between two objects o1, o2 is measured by a distance function dist(o1, o2): the larger dist(o1, o2), the less similar they are.
+
+
+
+## Centroid Method
+
+### k-center
+
+![image-20221211145002260](./test.png)
+
+### k-means
+
+
+
