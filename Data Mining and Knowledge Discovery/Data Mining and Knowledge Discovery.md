@@ -267,3 +267,23 @@ return C
 
 ![image-20221211151457110](./photo/k-means.png)
 
+
+
+## Connectivity Method
+
+### Agglomerative clustering (a.k.a. Hierarchical Clustering）
+
+Given a set P of n objects, the agglomerative method works as follows: 
+
+1. At the beginning, each object in P forms a cluster by itself. 
+2. Merge the two clusters that are most similar to each other. 
+3. Repeat the previous step until only one cluster is left.
+
+
+
+### Density-based clustering
+
+DBSCAN
+
+1. Cluster core points. 
+2. Assign non-core points.
