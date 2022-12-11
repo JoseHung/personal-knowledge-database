@@ -250,10 +250,6 @@ Typically, the similarity between two objects o1, o2 is measured by a distance f
 
 ### k-center
 
-![image-20221211145002260](./test.png)
-
-[test](./test.png)
-
 ### k-means
 
 
